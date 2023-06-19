@@ -1,0 +1,195 @@
+﻿@model FeedbackModel
+
+@{
+    ViewData["Title"] = "Home Page";
+    var modelInvalido = (bool)(TempData["ModelInvalido"] ?? false);
+}
+
+<form asp-action="SalvarFeedback" asp-controller="Feedback" id="formFeedback">
+    @Html.HiddenFor(model => model.Nota)
+    @Html.HiddenFor(model => model.TipoFeedback)
+    <div class="text-center">
+        <h1 class="display-4">Seja bem vindo ao nosso portal de relacionamento</h1>
+        <p id="divInformFeedback">Gostaríamos de ter o seu feedback!</p>
+
+        @*   <label for="customRange3" class="form-label">Avalie sua experiência no estabelecimento com uma nota de 0 a 10</label>
+        <input type="range" class="form-range" min="0" max="5" step="0.5" id="customRange3">*@
+
+        <div class="row justify-content-center align-items-center" @(modelInvalido ? "hidden" : "") id="divNps">
+            <div class="col-sm-12 col-lg-6">
+                <div class="animation-block">
+                    <div id="0animate">
+                        <b>De 0 a 10, como você classificaria a qualidade do atendimento desse chamado?<span class="text-danger"> *</span></b><br />
+                        <!---->
+                        <div class="row adjust-row-numbers">
+                            <!---->
+                            <div class="col-1 col-md-1">
+                                <button class="btn btn-grd-default ripple light widthButton text-white nps nps-color-0" type="button"><span class="adjust-button-center">0</span></button>
+                            </div>
+                            <div class="col-1 col-md-1">
+                                <button class="btn btn-grd-default ripple light widthButton text-white nps nps-color-1" type="button"><span class="adjust-button-center">1</span></button>
+                            </div>
+                            <div class="col-1 col-md-1">
+                                <button class="btn btn-grd-default ripple light widthButton text-white nps nps-color-2" type="button"><span class="adjust-button-center">2</span></button>
+                            </div>
+                            <div class="col-1 col-md-1">
+                                <button class="btn btn-grd-default ripple light widthButton text-white nps nps-color-3" type="button"><span class="adjust-button-center">3</span></button>
+                            </div>
+                            <div class="col-1 col-md-1">
+                                <button class="btn btn-grd-default ripple light widthButton text-white nps nps-color-4" type="button"><span class="adjust-button-center">4</span></button>
+                            </div>
+                            <div class="col-1 col-md-1">
+                                <button class="btn btn-grd-default ripple light widthButton text-white nps nps-color-5" type="button"><span class="adjust-button-center">5</span></button>
+                            </div>
+                            <div class="col-1 col-md-1">
+                                <button class="btn btn-grd-default ripple light widthButton text-white nps nps-color-6" type="button"><span class="adjust-button-center">6</span></button>
+                            </div>
+                            <div class="col-1 col-md-1">
+                                <button class="btn btn-grd-default ripple light widthButton text-white nps nps-color-7" type="button"><span class="adjust-button-center">7</span></button>
+                            </div>
+                            <div class="col-1 col-md-1">
+                                <button class="btn btn-grd-default ripple light widthButton text-white nps nps-color-8" type="button"><span class="adjust-button-center">8</span></button>
+                            </div>
+                            <div class="col-1 col-md-1">
+                                <button class="btn btn-grd-default ripple light widthButton text-white nps nps-color-9" type="button"><span class="adjust-button-center">9</span></button>
+                            </div>
+                            <div class="col-1 col-md-1">
+                                <button class="btn btn-grd-default ripple light widthButton text-white nps nps-color-10" type="button"><span class="adjust-button-center">10</span></button>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-6 col-md-6"><p>Péssimo</p></div>
+                            <div class="col-6 col-md-6 text-right"><p>Ótimo</p></div>
+                            <div class="col-md-12">
+                                <div class="row">
+                                    @*                                <div class="col-md-6">
+                                    <!---->
+                                    <button class="btn btn-secondary btn-sm survey_button" previousstep="" type="button">Voltar</button>
+                                    </div>*@
+                                    <!---->
+                                </div>
+                            </div>
+                            <button class="btn btn-grd-default ripple light widthButton survey_button"
+                                    nextstep=""
+                                    style="display: none; background-color: rgb(230, 117, 81); border-color: rgb(255, 255, 255); color: rgb(255, 255, 255);"
+                                    type="button"
+                                    id="0rate">
+                                <span class="adjust-button-center"></span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row justify-content-center align-items-center" @(!modelInvalido ? "hidden" : "") id="divTipoFeedback">
+            <b>Caso queira nos contar sua experiência, clique em um dos balões abaixo:</b><br /><br />
+            <div class="col-2">
+                <a class="btn-feedback">
+                    <div class="d-flex justify-content-center align-items-center" style="text-align:center; width: 70%; aspect-ratio: 1/1; border-radius: 50%; background-color: #83bf3f">
+                        <div class="d-block">
+                            <i class="fas fa-solid fa-thumbs-up" style="display: inline-block; font-size: 2rem"></i>
+                            <p class="mt-2 tipoFeedback">Elogio</p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <div class="col-2">
+                <a class="btn-feedback">
+                    <div class="d-flex justify-content-center align-items-center" style="text-align:center; width: 70%; aspect-ratio: 1/1; border-radius: 50%; background-color: #6790F6">
+                        <div class="d-block">
+                            <i class="fas fa-light fa-lightbulb" style="display: inline-block; font-size: 2rem"></i>
+                            <p class="mt-2 tipoFeedback">Sugestão</p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <div class="col-2">
+                <a class="btn-feedback">
+                    <div class="d-flex justify-content-center align-items-center" style="text-align:center; width: 70%; aspect-ratio: 1/1; border-radius: 50%; background-color: #ff9b0b">
+                        <div class="d-block">
+                            <i class="fas fa-solid fa-exclamation" style="display: inline-block; font-size: 2rem"></i>
+                            <p class="mt-2 tipoFeedback">Denúncia</p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <div class="col-2">
+                <a class="btn-feedback">
+                    <div class="d-flex justify-content-center align-items-center" style="text-align:center; width: 70%; aspect-ratio: 1/1; border-radius: 50%; background-color: #eb0000">
+                        <div class="d-block">
+                            <i class="fas fa-thumbs-down" style="display: inline-block; font-size: 2rem"></i>
+                            <p class="mt-2 tipoFeedback">Reclamação</p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+        <br />
+        <br />
+        <div @(!modelInvalido ? "hidden" : "") id="DivFormulario">
+            <div class="row justify-content-center">
+                <div class="mb-3 form-group col-6">
+                    <label class="form-label">Nome</label>
+                    @Html.EditorFor(model => model.Nome, new { htmlAttributes = new{ @class="form-control", @placeholder="Nome" }})
+                    @Html.ValidationMessageFor(model => model.Nome, String.Empty, new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="row justify-content-center">
+                <div class="mb-3 form-group col-6">
+                    <label class="form-label">Telefone</label>
+                    @Html.EditorFor(model => model.Telefone, new { htmlAttributes = new{ @class="form-control telefone", @placeholder="(99)99999-9999" }})
+                    @Html.ValidationMessageFor(model => model.Telefone, String.Empty, new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="row justify-content-center">
+                <div class="mb-3 form-group col-6">
+                    <label class="form-label">E-mail</label>
+                    @Html.EditorFor(model => model.Email, new { htmlAttributes = new{ @class="form-control", @placeholder="mail@mail.com" }})
+                    @Html.ValidationMessageFor(model => model.Email, String.Empty, new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="row justify-content-center align-items-center">
+                <div class="mb-3 form-group col-6">
+                    <label class="form-label">Conte sua experiência</label>
+                    @Html.TextAreaFor(model => model.Observacao, new { @class="form-control", @rows="3" })
+                    @Html.ValidationMessageFor(model => model.Observacao, String.Empty, new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+        <button type="button" @(!modelInvalido ? "hidden" : "") id="botaoEnviar" onclick="SalvarFeedback()" class="btn btn-primary btn-sm">Enviar</button>
+        <button type="button" @(!modelInvalido ? "hidden" : "") id="botaoPular" onclick="SalvarFeedback('pular')" class="btn btn-secondary btn-sm">Pular</button>
+    </div>
+</form>
+
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+
+        })
+
+        $(".btn-feedback").on("click", function () {
+            $("#TipoFeedback").val($(this).text());
+            $("#DivFormulario").prop('hidden', false);
+            $("#botaoEnviar").prop('hidden', false);
+        });
+
+
+        $(".nps").on("click", function () {
+            $("#Nota").val(parseInt($(this).text()));
+            $("#divNps").prop('hidden', true);
+            $("#divTipoFeedback").prop('hidden', false);
+            $("#botaoPular").prop('hidden', false);
+        });
+
+        function SalvarFeedback(pular) {
+            if (pular == "pular") {
+                $("#TipoFeedback").val("");
+            }
+
+            $("#divTipoFeedback").prop('hidden', true);
+            $("#divInformFeedback").prop('hidden', true);
+            $("#formFeedback").submit();
+        }
+
+    </script>
+}

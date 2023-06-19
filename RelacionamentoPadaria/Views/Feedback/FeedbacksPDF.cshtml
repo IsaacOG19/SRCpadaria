@@ -1,0 +1,66 @@
+﻿@model FeedbackModel
+
+@{
+    Layout = null;
+    ViewData["Title"] = "Consultar Feedbacks";
+}
+
+<style>
+    table {
+        border-collapse: collapse;
+        width: 100%;
+    }
+
+    th, td {
+        text-align: left;
+        padding: 8px;
+    }
+
+    th {
+        background-color: #f2f2f2;
+    }
+
+    tr:nth-child(even) {
+        background-color: #f2f2f2;
+    }
+
+    th, td {
+        height: 50px;
+        text-align: left;
+        padding: 8px;
+    }
+
+    th, td {
+        height: auto;
+        line-height: 2;
+        text-align: left;
+        padding: 8px;
+    }
+</style>
+
+<h5>Feedbacks Padaria</h5>
+<table>
+    <thead>
+        <tr>
+            <th>Nome</th>
+            <th>E-mail</th>
+            <th>Telefone</th>
+            <th>Observações</th>
+            <th>Tipo Feedback/Nota</th>
+            <th>Data Cadastro</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var feedback in Model.Feedbacks)
+        {
+            <tr>
+                <td>@feedback.Nome</td>
+                <td>@feedback.Email</td>
+                <td>@feedback.Telefone</td>
+                <td>@feedback.Observacao</td>
+                <td><span>@feedback.TipoFeedback / Nota: @feedback.Nota</span></td>
+                <td>@feedback.DataCadastro.ToShortDateString()</td>
+            </tr>
+        }
+    </tbody>
+</table>

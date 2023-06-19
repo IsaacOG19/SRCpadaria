@@ -1,0 +1,27 @@
+﻿@model RelacionamentoPadaria.Models.ContatoEmailFormModel
+
+<h3>Formulário de Contato</h3>
+<hr />
+<div class="row">
+	<div class="col-lg-12">
+		<form asp-action="Index" asp-controller="Email" method="post">
+			<div class="mb-3">
+				<label for="nome">Nome</label>
+				<input type="text" asp-for="Nome" class="form-control" placeholder="Informe seu nome" required>
+			</div>
+			<div class="mb-3">
+				<label for="email">Email</label>
+				<input type="text" asp-for="Email" class="form-control" placeholder="Informe o endereço de e-mail do destinatário" required>
+			</div>
+			<div class="mb-3">
+				<div class="form-group">
+					<label for="mandagem">Mensagem</label>
+					<textarea class="form-control" asp-for="Mensagem" placeholder="Mensagem" required></textarea>
+					<p class="help-block text-danger"></p>
+				</div>
+			</div>
+			<button type="submit" class="btn btn-primary ">Enviar Mensagem!</button>
+		</form>
+	</div>
+</div>
+
