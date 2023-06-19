@@ -1,0 +1,43 @@
+﻿@model FeedbackModel
+@{
+    ViewData["Title"] = "Feedbacks";
+}
+
+<h3 class="m-0 font-weight-bold text-primary">Listagem de Feedbacks</h3>
+
+<div class="card shadow" style="margin-top: 10px">
+    <div class="card-header py-3">
+        <div class="card-tools" style="float: right;">
+            <a target="_blank" class="btn btn-sm btn-primary" href="@Url.Action("ExportarPdf")">Exportar PDF <i class="fas fa-file-pdf"></i></a>
+        </div>
+    </div>    
+    <div class="card-body">
+        <table class="table table-hover table table-bordered" id="table-feedbacks" width="100%" cellspacing="0">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Nome</th>
+                    <th>E-mail</th>
+                    <th>Telefone</th>
+                    <th>Observações</th>
+                    <th>Tipo Feedback/Nota</th>
+                    <th>Data Cadastro</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var feedback in Model.Feedbacks)
+                {
+                    <tr>
+                        <th>@feedback.id</th>
+                        <td>@feedback.Nome</td>
+                        <td>@feedback.Email</td>
+                        <td>@feedback.Telefone</td>
+                        <td>@feedback.Observacao</td>
+                        <td><span>@feedback.TipoFeedback / Nota: @feedback.Nota</span></td>
+                        <td>@feedback.DataCadastro.ToShortDateString()</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

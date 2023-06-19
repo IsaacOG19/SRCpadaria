@@ -1,0 +1,40 @@
+﻿@model ContatosModel
+@{
+    ViewData["Title"] = "Criar contato";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Cadastrar Contato</h1>
+</div>
+
+<form asp-controller="Contato" asp-action="Criar" method="post">
+    <div class="mb-3">
+        <label for="nome">Nome</label>
+        <input type="text" asp-for="Nome" class="form-control" placeholder="Informe o nome do contato a ser cadastrado" >
+    </div>
+    <div class="mb-3">
+        <label for="email">E-mail</label>
+        <input type="text" asp-for="Email" class="form-control" placeholder="Informe o e-mail do contato">
+    </div>
+
+    <div class="mb-3">
+        <label for="telefone">Telefone</label>
+        <input type="text" asp-for="Telefone" class="form-control" placeholder="Informe o telefone do contato">
+    </div>
+
+    <div class="mb-3">
+        <label for="redesSociais">Redes Sociais</label>
+        <input type="text" asp-for="RedesSociais" class="form-control">
+    </div>
+
+    <div class="mb-3">
+        <label for="obeservacao" class="form-label">Oberservações</label>
+        <textarea class="form-control" asp-for="Observacao" rows="3"></textarea>
+    </div>
+    <div class="mb-3 form-check">
+        <input type="checkbox" class="form-check-input" asp-for="Status">
+        <label class="form-check-label" asp-for="Status" asp-for="Status">Cliente ativo</label>
+    </div>
+    <button type="submit" class="btn btn-primary btn-block">Adicionar</button>
+    <a class="btn btn-secondary btn-block" asp-action="Index" asp-controller="Contato" role="button">Voltar</a>
+</form>
